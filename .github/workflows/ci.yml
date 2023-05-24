@@ -14,10 +14,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout benchmarks repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
       - name: Download import-results binary
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v1
         with:
           repo: ${{ format('{0}-ci', github.repository) }}
           workflow: ci.yml
@@ -28,7 +28,7 @@ jobs:
           chmod +x iocost-benchmarks-ci/import-results
 
       - name: Download resctl-demo binary
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v1
         with:
           repo: ${{ format('{0}-ci', github.repository) }}
           workflow: build-resctl-demo.yml
@@ -91,7 +91,7 @@ jobs:
 
       - name: Upload PDFs
         if: env.DID_IMPORT == '1'
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
           name: PDFs
           if-no-files-found: error
